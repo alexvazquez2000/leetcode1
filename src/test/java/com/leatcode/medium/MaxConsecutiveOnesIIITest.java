@@ -167,6 +167,7 @@ public class MaxConsecutiveOnesIIITest {
 		int k = 3;
 		int result = longestOnes(nums, k);
 		System.out.println("result: " + result);
+		//FIXME: this is not passing - getting 12 instead of 10
 		assertEquals(10, result);
 	}
 
@@ -222,7 +223,7 @@ public class MaxConsecutiveOnesIIITest {
 		int k = 2890;
 		int result = longestOnes(nums, k);
 		System.out.println("result: " + result);
-		//probably  5790
+		//FIXME: it returns 5915 but it should probably be 5790
 		assertEquals(5790, result);
 	}
 
