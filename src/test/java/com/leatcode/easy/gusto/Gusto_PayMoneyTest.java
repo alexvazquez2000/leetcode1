@@ -4,7 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
 
 public class Gusto_PayMoneyTest {
 
@@ -48,33 +49,30 @@ public class Gusto_PayMoneyTest {
 		System.out.println();
 	}
 
-	@Test
-	public void exactChange() {
-		Map<String, Integer> owed = new HashMap<>();
+	static Map<String, Integer> owed = new HashMap<>();
+	@BeforeEach
+	void setup() {
 		owed.put("a", 10);
 		owed.put("b", 10);
 		owed.put("c", 10);
 		owed.put("d", 10);
+	}
+	
+	@Test
+	void exactChange() {
 		print("case 1 - pay ", pay(owed, 40));
 	}
 
 	@Test
-	public void notEnoughMoneyToPayAll() {
-		Map<String, Integer> owed = new HashMap<>();
+	void notEnoughMoneyToPayAll() {
 		owed.put("a", 100);
-		owed.put("b", 10);
-		owed.put("c", 10);
-		owed.put("d", 10);
 		print("case 2 - pay (not enough money)", pay(owed, 40));
 	}
 
 	@Test
-	public void payAllSpareChange() {
-		Map<String, Integer> owed = new HashMap<>();
+	void payAllSpareChange() {
 		owed.put("a", 1);
-		owed.put("b", 10);
-		owed.put("c", 10);
-		owed.put("d", 10);
+		//we owe 31 and have extra money left
 		print("case 3 - pay (too much money)", pay(owed, 40));
 	}
 
