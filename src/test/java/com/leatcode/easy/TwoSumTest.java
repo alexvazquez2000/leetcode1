@@ -47,14 +47,39 @@ Constraints:
  */
 class TwoSumTest {
 
-
+	/**
+	 * Resubmitted - this runs on O(N) and has space O(N)
+	 * Beats 99.11% and space beats 28.57%
+	 * 
+	 * it checks a table to look if we have seen the missing number
+	 * 
+	 * @param nums
+	 * @param target
+	 * @return
+	 */
+	public static int[] twoSum(int[] nums, int target) {
+		Map<Integer, Integer> seenMap = new HashMap<>();
+		int[] response = new int[2];
+		for (int x = 0; x< nums.length; x++) {
+			int lookingFor = target - nums[x];
+			if (seenMap.containsKey(lookingFor)) {
+				response[1] = x;
+				response[0] = seenMap.get(lookingFor);
+				return response;
+			} else {
+				seenMap.put(nums[x], x);
+			}
+		}
+		return response;
+	}
+	
 	
 	/**
 	 * This run in O(N^2) -  it beats 28.74% and memory beats 20.19%
 	 * This was one of the first problems I worked on, about May 2025, but for some reason it wasn't recorded.
 	 * (Re-)Submitted on Dec 18, 2025
 	 */
-	public static int[] twoSum(int[] nums, int target) {
+	public static int[] twoSum_O_N_2(int[] nums, int target) {
 		int[] response = new int[2];
 		boolean done = false;
 		for (int x = 0; x < nums.length - 1 && !done; x++) {
